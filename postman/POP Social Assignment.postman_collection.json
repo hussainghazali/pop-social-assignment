@@ -1,0 +1,1340 @@
+{
+	"info": {
+		"_postman_id": "8d45c340-f277-4f63-8fd7-d1c18c7c1786",
+		"name": "POP Social Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21971595"
+	},
+	"item": [
+		{
+			"name": "Likes",
+			"item": [
+				{
+					"name": "Like a Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/posts/:postId/like",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts",
+								":postId",
+								"like"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "ec32f808-4680-47cb-907f-cc583f47c5ce"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Like a Post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/posts/:postId/like",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"posts",
+										":postId",
+										"like"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "ec32f808-4680-47cb-907f-cc583f47c5ce"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:43:28 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "263"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"4761cf00-85e6-427b-bda5-d14c39736d33\",\n        \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n        \"post\": \"ec32f808-4680-47cb-907f-cc583f47c5ce\",\n        \"created_at\": \"2023-10-20T16:43:28.1153745+05:00\",\n        \"updated_at\": \"2023-10-20T16:43:28.1153745+05:00\"\n    },\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Remove a Like",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/posts/:postId/like/:likeId/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts",
+								":postId",
+								"like",
+								":likeId",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "ec32f808-4680-47cb-907f-cc583f47c5ce"
+								},
+								{
+									"key": "likeId",
+									"value": "4761cf00-85e6-427b-bda5-d14c39736d33"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Remove a Like",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/posts/:postId/like/:likeId/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"posts",
+										":postId",
+										"like",
+										":likeId",
+										"delete"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "ec32f808-4680-47cb-907f-cc583f47c5ce"
+										},
+										{
+											"key": "likeId",
+											"value": "4761cf00-85e6-427b-bda5-d14c39736d33"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:45:48 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"title\": \"ICC WORLD CUP\",\r\n\t\"content\": \"PAKISTAN VS INDIA\",\r\n    \"imagePath\": \"imageUrl\",\r\n    \"videoPath\": \"videoUrl\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/posts/"
+					},
+					"response": [
+						{
+							"name": "Create Post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"title\": \"ICC WORLD CUP\",\r\n\t\"content\": \"PAKISTAN VS INDIA\",\r\n    \"imagePath\": \"imageUrl\",\r\n    \"videoPath\": \"videoUrl\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8000/api/posts/"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:10:11 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "346"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"5eba9324-0a1c-43b6-821a-c51be6818a71\",\n        \"title\": \"ICC WORLD CUP\",\n        \"content\": \"PAKISTAN VS INDIA\",\n        \"imagePath\": \"imageUrl\",\n        \"videoPath\": \"videoUrl\",\n        \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n        \"Likes\": null,\n        \"Comments\": null,\n        \"created_at\": \"2023-10-20T16:10:11.8856146+05:00\",\n        \"updated_at\": \"2023-10-20T16:10:11.8856146+05:00\"\n    },\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Posts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/posts/"
+					},
+					"response": [
+						{
+							"name": "Get All Posts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8000/api/posts/"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:52:38 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1554"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"09605463-1f59-4da2-8127-c88b621edb15\",\n            \"title\": \"ICC WORLD CUP\",\n            \"content\": \"PAKISTAN VS INDIA\",\n            \"imagePath\": \"imageUrl\",\n            \"videoPath\": \"videoUrl\",\n            \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n            \"Likes\": [],\n            \"LikeCount\": 0,\n            \"Comments\": [],\n            \"CommentCount\": 0,\n            \"created_at\": \"2023-10-20T16:13:14.36505+05:00\",\n            \"updated_at\": \"2023-10-20T16:13:14.36505+05:00\"\n        },\n        {\n            \"id\": \"ec32f808-4680-47cb-907f-cc583f47c5ce\",\n            \"title\": \"ICC WORLD CUP 2023\",\n            \"content\": \"PAKISTAN VS INDIA\",\n            \"imagePath\": \"imageUrl\",\n            \"videoPath\": \"videoUrl\",\n            \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n            \"Likes\": [],\n            \"LikeCount\": 0,\n            \"Comments\": [],\n            \"CommentCount\": 0,\n            \"created_at\": \"2023-10-20T16:42:00.166532+05:00\",\n            \"updated_at\": \"2023-10-20T16:42:00.166532+05:00\"\n        },\n        {\n            \"id\": \"07a4a61e-eced-4b48-a3c5-2cd510bb36da\",\n            \"title\": \"ICC WORLD CUP 2023 EVENT\",\n            \"content\": \"PAKISTAN VS INDIA\",\n            \"imagePath\": \"imageUrl\",\n            \"videoPath\": \"videoUrl\",\n            \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n            \"Likes\": [\n                {\n                    \"id\": \"6abae102-479e-4cb4-9378-313ba26483d7\",\n                    \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n                    \"post\": \"07a4a61e-eced-4b48-a3c5-2cd510bb36da\",\n                    \"created_at\": \"2023-10-20T16:46:55.653176+05:00\",\n                    \"updated_at\": \"2023-10-20T16:46:55.653176+05:00\"\n                },\n                {\n                    \"id\": \"aa9fe7bc-f0fc-4e0f-819c-007ae2a7d2fd\",\n                    \"user\": \"4a34bb21-7b92-4e73-8f34-980297a4caa4\",\n                    \"post\": \"07a4a61e-eced-4b48-a3c5-2cd510bb36da\",\n                    \"created_at\": \"2023-10-20T16:47:35.613174+05:00\",\n                    \"updated_at\": \"2023-10-20T16:47:35.613174+05:00\"\n                }\n            ],\n            \"LikeCount\": 2,\n            \"Comments\": [],\n            \"CommentCount\": 0,\n            \"created_at\": \"2023-10-20T16:46:24.382171+05:00\",\n            \"updated_at\": \"2023-10-20T16:46:24.382171+05:00\"\n        }\n    ],\n    \"results\": 3,\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"title\": \"ICC WORLD CUP 2023\",\r\n\t\"content\": \"PAKISTAN VS INDIA\",\r\n    \"imagePath\": \"url\",\r\n    \"videoPath\": \"url\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/posts/:postId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts",
+								":postId"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "5eba9324-0a1c-43b6-821a-c51be6818a71"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Post",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"title\": \"ICC WORLD CUP 2023\",\r\n\t\"content\": \"PAKISTAN VS INDIA\",\r\n    \"imagePath\": \"url\",\r\n    \"videoPath\": \"url\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/posts/:postId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"posts",
+										":postId"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "5eba9324-0a1c-43b6-821a-c51be6818a71"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:11:33 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "340"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"5eba9324-0a1c-43b6-821a-c51be6818a71\",\n        \"title\": \"ICC WORLD CUP 2023\",\n        \"content\": \"PAKISTAN VS INDIA\",\n        \"imagePath\": \"url\",\n        \"videoPath\": \"url\",\n        \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n        \"Likes\": null,\n        \"Comments\": null,\n        \"created_at\": \"2023-10-20T16:10:11.885614+05:00\",\n        \"updated_at\": \"2023-10-20T16:11:33.7236877+05:00\"\n    },\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Post By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"title\": \"hussainghazali@gmail.com\",\r\n\t\"content\": \"b46maymar\",\r\n    \"imagePath\": \"url\",\r\n    \"videoPath\": \"url\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/posts/:postId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts",
+								":postId"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "07a4a61e-eced-4b48-a3c5-2cd510bb36da"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Post By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"title\": \"hussainghazali@gmail.com\",\r\n\t\"content\": \"b46maymar\",\r\n    \"imagePath\": \"url\",\r\n    \"videoPath\": \"url\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/posts/:postId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"posts",
+										":postId"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "07a4a61e-eced-4b48-a3c5-2cd510bb36da"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:54:06 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "849"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"07a4a61e-eced-4b48-a3c5-2cd510bb36da\",\n        \"title\": \"ICC WORLD CUP 2023 EVENT\",\n        \"content\": \"PAKISTAN VS INDIA\",\n        \"imagePath\": \"imageUrl\",\n        \"videoPath\": \"videoUrl\",\n        \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n        \"Likes\": [\n            {\n                \"id\": \"6abae102-479e-4cb4-9378-313ba26483d7\",\n                \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n                \"post\": \"07a4a61e-eced-4b48-a3c5-2cd510bb36da\",\n                \"created_at\": \"2023-10-20T16:46:55.653176+05:00\",\n                \"updated_at\": \"2023-10-20T16:46:55.653176+05:00\"\n            },\n            {\n                \"id\": \"aa9fe7bc-f0fc-4e0f-819c-007ae2a7d2fd\",\n                \"user\": \"4a34bb21-7b92-4e73-8f34-980297a4caa4\",\n                \"post\": \"07a4a61e-eced-4b48-a3c5-2cd510bb36da\",\n                \"created_at\": \"2023-10-20T16:47:35.613174+05:00\",\n                \"updated_at\": \"2023-10-20T16:47:35.613174+05:00\"\n            }\n        ],\n        \"LikeCount\": 2,\n        \"Comments\": [],\n        \"CommentCount\": 0,\n        \"created_at\": \"2023-10-20T16:46:24.382171+05:00\",\n        \"updated_at\": \"2023-10-20T16:46:24.382171+05:00\"\n    },\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"title\": \"hussainghazali@gmail.com\",\r\n\t\"content\": \"b46maymar\",\r\n    \"imagePath\": \"url\",\r\n    \"videoPath\": \"url\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/posts/:postId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts",
+								":postId"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "5eba9324-0a1c-43b6-821a-c51be6818a71"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Post",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"title\": \"hussainghazali@gmail.com\",\r\n\t\"content\": \"b46maymar\",\r\n    \"imagePath\": \"url\",\r\n    \"videoPath\": \"url\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/posts/:postId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"posts",
+										":postId"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "5eba9324-0a1c-43b6-821a-c51be6818a71"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:12:51 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Post By User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"title\": \"hussainghazali@gmail.com\",\r\n\t\"content\": \"b46maymar\",\r\n    \"imagePath\": \"url\",\r\n    \"videoPath\": \"url\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/posts/user"
+					},
+					"response": [
+						{
+							"name": "Get Post By User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"title\": \"hussainghazali@gmail.com\",\r\n\t\"content\": \"b46maymar\",\r\n    \"imagePath\": \"url\",\r\n    \"videoPath\": \"url\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8000/api/posts/user"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:12:28 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "339"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"5eba9324-0a1c-43b6-821a-c51be6818a71\",\n        \"title\": \"ICC WORLD CUP 2023\",\n        \"content\": \"PAKISTAN VS INDIA\",\n        \"imagePath\": \"url\",\n        \"videoPath\": \"url\",\n        \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n        \"Likes\": null,\n        \"Comments\": null,\n        \"created_at\": \"2023-10-20T16:10:11.885614+05:00\",\n        \"updated_at\": \"2023-10-20T16:11:33.723687+05:00\"\n    },\n    \"status\": \"success\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"text\": \"Very good Post by Hussain\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/posts/:postId/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts",
+								":postId",
+								"comment"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "09605463-1f59-4da2-8127-c88b621edb15"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Comment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"text\": \"Very good Post by Hussain\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/posts/:postId/comment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"posts",
+										":postId",
+										"comment"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "09605463-1f59-4da2-8127-c88b621edb15"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:16:35 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "298"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"ee5c5dc8-1845-4ab0-97e5-f2bb1b5d771d\",\n        \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n        \"post\": \"09605463-1f59-4da2-8127-c88b621edb15\",\n        \"text\": \"Very good Post by Hussain\",\n        \"created_at\": \"2023-10-20T16:16:35.6370774+05:00\",\n        \"updated_at\": \"2023-10-20T16:16:35.6370774+05:00\"\n    },\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"text\": \"Very good Post by Hussain Ghazali\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/posts/:postId/comment/:commentId/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts",
+								":postId",
+								"comment",
+								":commentId",
+								"update"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "09605463-1f59-4da2-8127-c88b621edb15"
+								},
+								{
+									"key": "commentId",
+									"value": "ee5c5dc8-1845-4ab0-97e5-f2bb1b5d771d"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Comment",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"text\": \"Very good Post by Hussain Ghazali\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/posts/:postId/comment/:commentId/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"posts",
+										":postId",
+										"comment",
+										":commentId",
+										"update"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "09605463-1f59-4da2-8127-c88b621edb15"
+										},
+										{
+											"key": "commentId",
+											"value": "ee5c5dc8-1845-4ab0-97e5-f2bb1b5d771d"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:38:43 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "305"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"ee5c5dc8-1845-4ab0-97e5-f2bb1b5d771d\",\n        \"user\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n        \"post\": \"09605463-1f59-4da2-8127-c88b621edb15\",\n        \"text\": \"Very good Post by Hussain Ghazali\",\n        \"created_at\": \"2023-10-20T16:16:35.637077+05:00\",\n        \"updated_at\": \"2023-10-20T16:38:43.6473693+05:00\"\n    },\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"text\": \"Very good Post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/posts/:postId/comment/:commentId/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts",
+								":postId",
+								"comment",
+								":commentId",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "09605463-1f59-4da2-8127-c88b621edb15"
+								},
+								{
+									"key": "commentId",
+									"value": "ee5c5dc8-1845-4ab0-97e5-f2bb1b5d771d"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Comment",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"text\": \"Very good Post\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/posts/:postId/comment/:commentId/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"posts",
+										":postId",
+										"comment",
+										":commentId",
+										"delete"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "09605463-1f59-4da2-8127-c88b621edb15"
+										},
+										{
+											"key": "commentId",
+											"value": "ee5c5dc8-1845-4ab0-97e5-f2bb1b5d771d"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:40:44 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Hussain Ghazali\",\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\",\r\n\t\"passwordConfirm\": \"b46maymar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/users/register"
+					},
+					"response": [
+						{
+							"name": "Register User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hussain Ghazali\",\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\",\r\n\t\"passwordConfirm\": \"b46maymar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8000/api/users/register"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:05:52 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "240"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n            \"name\": \"Hussain Ghazali\",\n            \"email\": \"hussainghazali@gmail.com\",\n            \"created_at\": \"2023-10-20T16:05:52.8606624+05:00\",\n            \"updated_at\": \"2023-10-20T16:05:52.8606624+05:00\"\n        }\n    },\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/users/login"
+					},
+					"response": [
+						{
+							"name": "Login User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8000/api/users/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc4MDA5NzEsImlhdCI6MTY5NzgwMDA3MSwibmJmIjoxNjk3ODAwMDcxLCJzdWIiOiI0NWQwZGEwOS03MDAyLTQ4YTItYjRiYy0zOTNmZDI0NGY3N2EifQ.ArazAGWOm5JbArDJfdeNdzQZLXFD7VxXQrDEvPiVL2XHEz_vFDIdO1o4pdRcVn4CJX1k27CzKeMVTAHHMnIOpA; Path=/; Domain=localhost; Max-Age=900; HttpOnly"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "refresh_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc4MDM2NzEsImlhdCI6MTY5NzgwMDA3MSwibmJmIjoxNjk3ODAwMDcxLCJzdWIiOiI0NWQwZGEwOS03MDAyLTQ4YTItYjRiYy0zOTNmZDI0NGY3N2EifQ.I7VFk77J6Sl5sLJSayFwArSBbB2Fd7UcQM_lIi0fbvE0g4MxYV8vGMtIYXT6XwJOXSDtpaHfllU-CKsWTX07Ww; Path=/; Domain=localhost; Max-Age=3600; HttpOnly"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "logged_in=true; Path=/; Domain=localhost; Max-Age=900"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:07:51 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "292"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc4MDA5NzEsImlhdCI6MTY5NzgwMDA3MSwibmJmIjoxNjk3ODAwMDcxLCJzdWIiOiI0NWQwZGEwOS03MDAyLTQ4YTItYjRiYy0zOTNmZDI0NGY3N2EifQ.ArazAGWOm5JbArDJfdeNdzQZLXFD7VxXQrDEvPiVL2XHEz_vFDIdO1o4pdRcVn4CJX1k27CzKeMVTAHHMnIOpA\",\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "User Details ( Me )",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/users/me"
+					},
+					"response": [
+						{
+							"name": "User Details ( Me )",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8000/api/users/me"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:08:15 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "238"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"45d0da09-7002-48a2-b4bc-393fd244f77a\",\n            \"name\": \"Hussain Ghazali\",\n            \"email\": \"hussainghazali@gmail.com\",\n            \"created_at\": \"2023-10-20T16:05:52.860662+05:00\",\n            \"updated_at\": \"2023-10-20T16:05:52.860662+05:00\"\n        }\n    },\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Refresh Token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/users/refresh"
+					},
+					"response": [
+						{
+							"name": "Get Refresh Token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8000/api/users/refresh"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc4MDEwMTMsImlhdCI6MTY5NzgwMDExMywibmJmIjoxNjk3ODAwMTEzLCJzdWIiOiI0NWQwZGEwOS03MDAyLTQ4YTItYjRiYy0zOTNmZDI0NGY3N2EifQ.BPrpaBJk9ysPoYrNK-R_akAUZXKANrIRP-NP5cZlR87saaVJy5O2RE_hvFVripgBep2Y6Y-kWVMqqjtgc5CHpw; Path=/; Domain=localhost; Max-Age=900; HttpOnly"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "logged_in=true; Path=/; Domain=localhost; Max-Age=900"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:08:33 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "292"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc4MDEwMTMsImlhdCI6MTY5NzgwMDExMywibmJmIjoxNjk3ODAwMTEzLCJzdWIiOiI0NWQwZGEwOS03MDAyLTQ4YTItYjRiYy0zOTNmZDI0NGY3N2EifQ.BPrpaBJk9ysPoYrNK-R_akAUZXKANrIRP-NP5cZlR87saaVJy5O2RE_hvFVripgBep2Y6Y-kWVMqqjtgc5CHpw\",\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/users/logout"
+					},
+					"response": [
+						{
+							"name": "Logout User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"email\": \"hussainghazali@gmail.com\",\r\n\t\"password\": \"b46maymar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8000/api/users/logout"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Domain=localhost; Max-Age=0; HttpOnly"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "refresh_token=; Path=/; Domain=localhost; Max-Age=0; HttpOnly"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "logged_in=; Path=/; Domain=localhost; Max-Age=0"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Oct 2023 11:08:51 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "20"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "API Status",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/api/status"
+			},
+			"response": [
+				{
+					"name": "API Status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/status"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Oct 2023 11:09:08 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "103"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Build a Go-based REST API for an Instagram-like app by Hussain Ghazali\",\n    \"status\": \"success\"\n}"
+				}
+			]
+		}
+	]
+}

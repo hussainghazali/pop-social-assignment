@@ -1,0 +1,24 @@
+# .air.toml
+
+# Run your application with 'go run main.go'.
+[command]
+exclude_dir = ["assets", "tmp", "vendor"]
+
+[command.dev]
+command = "go"
+args = ["run", "main.go"]
+include_ext = [".go", ".tpl", ".html"]
+exclude_dir = ["assets", "tmp", "vendor"]
+
+# Configure the environment variables.
+[build]
+binary = "main"
+tmp_dir = "tmp"
+exclude_dir = ["assets", "tmp", "vendor"]
+delay = 1000
+
+[build.dev]
+binary = "main"
+tmp_dir = "tmp"
+exclude_dir = ["assets", "tmp", "vendor"]
+delay = 1000

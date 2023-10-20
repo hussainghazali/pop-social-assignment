@@ -1,0 +1,648 @@
+definitions:
+  controllers.ErrorResponse:
+    properties:
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+  controllers.ResponseData:
+    properties:
+      message:
+        type: string
+    type: object
+  controllers.TokenResponse:
+    properties:
+      access_token:
+        type: string
+    type: object
+  models.Comment:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      post:
+        type: string
+      text:
+        type: string
+      updated_at:
+        type: string
+      user:
+        type: string
+    type: object
+  models.CreatePostComment:
+    properties:
+      created_at:
+        type: string
+      post:
+        type: string
+      text:
+        type: string
+      updated_at:
+        type: string
+      user:
+        type: string
+    required:
+    - text
+    type: object
+  models.CreatePostRequest:
+    properties:
+      content:
+        type: string
+      created_at:
+        type: string
+      imagePath:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+      user:
+        type: string
+      videoPath:
+        type: string
+    required:
+    - content
+    - imagePath
+    - title
+    - videoPath
+    type: object
+  models.Like:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      post:
+        type: string
+      updated_at:
+        type: string
+      user:
+        type: string
+    type: object
+  models.Post:
+    properties:
+      comments:
+        description: One-to-Many relationship
+        items:
+          $ref: '#/definitions/models.Comment'
+        type: array
+      content:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      imagePath:
+        type: string
+      likes:
+        description: One-to-Many relationship
+        items:
+          $ref: '#/definitions/models.Like'
+        type: array
+      title:
+        type: string
+      updated_at:
+        type: string
+      user:
+        type: string
+      videoPath:
+        type: string
+    type: object
+  models.SignInInput:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  models.SignUpInput:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        minLength: 8
+        type: string
+      passwordConfirm:
+        type: string
+    required:
+    - email
+    - name
+    - password
+    - passwordConfirm
+    type: object
+  models.UpdateComment:
+    properties:
+      created_at:
+        type: string
+      post:
+        type: string
+      text:
+        type: string
+      updated_at:
+        type: string
+      user:
+        type: string
+    type: object
+  models.UpdatePost:
+    properties:
+      content:
+        type: string
+      created_at:
+        type: string
+      imagePath:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+      user:
+        type: string
+      videoPath:
+        type: string
+    type: object
+  models.UserResponse:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/like/{likeId}:
+    delete:
+      description: Remove a like for a post.
+      operationId: remove-like
+      parameters:
+      - description: Like ID
+        in: path
+        name: likeId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Remove a like
+      tags:
+      - likes
+  /api/like/{postId}:
+    post:
+      description: Create a new like for a post.
+      operationId: create-like
+      parameters:
+      - description: Post ID
+        in: path
+        name: postId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Like'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Create a new like
+      tags:
+      - likes
+  /api/post:
+    post:
+      description: Create a new post.
+      operationId: create-post
+      parameters:
+      - description: Current User ID
+        in: header
+        name: currentUser
+        required: true
+        type: string
+      - description: Post data
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreatePostRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Post'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Create a post
+      tags:
+      - posts
+  /api/post/{postId}:
+    get:
+      description: Retrieve a post by its unique ID.
+      operationId: find-post-by-id
+      parameters:
+      - description: Post ID
+        in: path
+        name: postId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Post'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Get a post by ID
+      tags:
+      - posts
+    put:
+      description: Update an existing post.
+      operationId: update-post
+      parameters:
+      - description: Post ID
+        in: path
+        name: postId
+        required: true
+        type: string
+      - description: Current User ID
+        in: header
+        name: currentUser
+        required: true
+        type: string
+      - description: Post data
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdatePost'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Post'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Update a post
+      tags:
+      - posts
+  /api/posts:
+    get:
+      description: Retrieve a list of posts with optional pagination.
+      operationId: find-post
+      parameters:
+      - description: Page number
+        in: query
+        name: page
+        type: integer
+      - description: Number of items per page
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.ResponseData'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Get a list of posts
+      tags:
+      - posts
+  /api/posts/{postId}:
+    delete:
+      description: Delete a post by its ID.
+      operationId: delete-post
+      parameters:
+      - description: Post ID
+        in: path
+        name: postId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Delete a post
+      tags:
+      - posts
+  /api/posts/user:
+    get:
+      description: Find a post by the ID of the currently authenticated user.
+      operationId: find-post-by-user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Post'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Find a post by the current user's ID.
+      tags:
+      - posts
+  /api/users/logout:
+    get:
+      description: Logs the user out by clearing cookies and ending the user session.
+      operationId: logout-user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Log out the user.
+      tags:
+      - users
+  /api/users/me:
+    get:
+      description: Returns information about the currently authenticated user.
+      operationId: me
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserResponse'
+      security:
+      - BearerAuth: []
+      summary: Get the currently authenticated user's information.
+      tags:
+      - users
+  /api/users/refresh:
+    get:
+      description: Refreshes the access token using a valid refresh token.
+      operationId: refresh-token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.TokenResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Refresh the access token.
+      tags:
+      - users
+  /api/users/signin:
+    post:
+      consumes:
+      - application/json
+      description: Logs in an existing user with the provided credentials.
+      operationId: login-user
+      parameters:
+      - description: User credentials for login
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.SignInInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.TokenResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Log in a user.
+      tags:
+      - users
+  /api/users/signup:
+    post:
+      consumes:
+      - application/json
+      description: Registers a new user with the provided information.
+      operationId: create-user
+      parameters:
+      - description: User information to register
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.SignUpInput'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.UserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Register a new user.
+      tags:
+      - users
+  /comments/{commentId}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an existing comment if the user is the owner.
+      operationId: delete-comment
+      parameters:
+      - description: Comment ID
+        format: uuid
+        in: path
+        name: commentId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "502":
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Delete a comment
+      tags:
+      - comments
+    put:
+      consumes:
+      - application/json
+      description: Update an existing comment if the user is the owner.
+      operationId: update-comment
+      parameters:
+      - description: Comment ID
+        format: uuid
+        in: path
+        name: commentId
+        required: true
+        type: string
+      - description: Comment update request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateComment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Update a comment
+      tags:
+      - comments
+  /comments/{postId}:
+    post:
+      consumes:
+      - application/json
+      description: Create a new comment for a post.
+      operationId: create-comment
+      parameters:
+      - description: Post ID
+        format: uuid
+        in: path
+        name: postId
+        required: true
+        type: string
+      - description: Comment request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreatePostComment'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Comment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Create a comment
+      tags:
+      - comments
+swagger: "2.0"
